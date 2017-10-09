@@ -1,8 +1,4 @@
-#**Traffic Sign Recognition** 
-
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+# Traffic Sign Recognition
 
 ---
 
@@ -28,19 +24,16 @@ The goals / steps of this project are the following:
 [image7]: ./examples/placeholder.png "Traffic Sign 4"
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
-
 ---
-###Writeup / README
+## Traffic Sign Recognition
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
 You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
-###Data Set Summary & Exploration
+### Data Set Summary & Exploration
 
-####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
@@ -58,20 +51,20 @@ The augmentation is needed for some classids which is ordered in panda table.
 Second, 32x32 resolution is not good enough for some classids. expect lower probability for some classes.
 You can see it from example sign plots. 
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####1.1 Augmentation
+#### 1.1 Augmentation
 
 The augmentation is needed for classes with smaller datasets. However, the test accuracy is almost 96% without augmentation when I used the deeper model(32 and 64 conv layers) instead of the original lenet model.
 
 For the analysis, i used augmented data(4 x training data)  and saw little bit accuracy improvement. 
 
-####1.2 Color scale and Normalization
+#### 1.2 Color scale and Normalization
 I tried several diffirent normalizations. The performence with any normalization is much better than the performence without
 normalization.  The following normalization gave me the best result. But, their results are quite close.
 Also, the gray scale gave better accuracy and learnt faster. 
 
-####2. I modified the lenet model and increased the number of conv layers. The idea was mentioned in papers and blogs (http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf). 
+#### 2. I modified the lenet model and increased the number of conv layers. The idea was mentioned in papers and blogs (http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf). 
 Also, i got some ideas and codes from blogs and github accounts.
 https://navoshta.com/traffic-signs-classification/
 https://github.com/navoshta/traffic-signs/blob/master/Traffic_Signs_Recognition.ipynb
@@ -119,7 +112,7 @@ My final model consisted of the following layers:
  
 
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used AdamOptimizer and the following parameters:
 
@@ -128,7 +121,7 @@ EPOCHS = 30
 BATCH_SIZE = 128
 sigma = 0.1
 
-####4. Having deeper model really helps. Human-level labeling can be worse than the result.  
+#### 4. Having deeper model really helps. Human-level labeling can be worse than the result.  
 
 My final model results were:
 
@@ -140,9 +133,9 @@ I started from modifying lenet and tried to make it deeper(32 and 64 conv layers
 for carnd. Dropout is added for regularization. keep_prob=0.5. I tuned all parameters. the above parameter combination gave me the best result.
 
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. I chose 8 example signs found from the web  and divided to two directories, test_images and new_images. 
+#### 1. I chose 8 example signs found from the web  and divided to two directories, test_images and new_images. 
 The images for test_images were to used to check if our predictor is working. The images for new_images are used 
 to explain shortcomings of our predictor.
 
@@ -247,8 +240,5 @@ Predicted: Speed limit (100km/h) (INCORRECT, expected: Slippery road)
 So, I conclude that our predictor is not working well for miscentered images and images with more than 1 sign.
 Second, whenever image is misidentified, all top choices have significant probablities. In other case, probability for top 1 has 
 close to 1.0 and probabilitis for other choices are close to 0.0 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
